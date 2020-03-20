@@ -37,4 +37,8 @@ Route::get('users/{name?}', function ($name = 'Usual Name') {
     return $name;
 });
 
+Route::get('products', "ProductController@index");
+
+Route::get('products/{id}', "ProductController@show");
+
 
