@@ -9,11 +9,11 @@
 
 </head>
 <body>
-	@include('products.layouts.blocks.nav.index')
+	@include('shop.layouts.blocks.nav.index')
 
-  @yield('content')
+  	@yield('content')
 
-  @include('products.layouts.blocks.footer.index')  
+ 	@include('shop.layouts.blocks.footer.index')  
 
 	<script src="{{ asset('/js/app.js') }}"></script>
   

@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-	// $data = request()
-    return view('welcome');
-});
+// Route::get('/', function () {
+// 	// $data = request()
+//     return view('welcome');
+// });
 
 
 Route::get('/first_page_view', function () {
@@ -29,16 +29,33 @@ Route::get('/first_page', function () {
     return 'first_page';
 });
 
-Route::get('user/{id}', function ($id) {
-    return 'User '.$id;
-});
+// Route::get('user/{id}', function ($id) {
+//     return 'User '.$id;
+// });
 
-Route::get('users/{name?}', function ($name = 'Usual Name') {
-    return $name;
-});
+// Route::get('users/{name?}', function ($name = 'Usual Name') {
+//     return $name;
+// });
 
 Route::get('products', "ProductController@index");
 
 Route::get('products/{id}', "ProductController@show");
+
+
+Route::get('news', "NewsController@get");
+
+
+Route::get('users', "UsersController@index");
+
+Route::get('users/{id}', "UsersController@show");
+
+
+Route::get('/about', "AboutController@index");
+
+Route::get('/', "ShopController@index");
+
+Route::get('/{id}', "ShopController@show");
+
+
 
 
