@@ -40,6 +40,8 @@ class ProductController extends Controller
 
 	public function show($id)
 	{
+		App::setlocale('en');
+		
 		$product = $this->products[$id];
 
 		return view('products.show', compact('product'));

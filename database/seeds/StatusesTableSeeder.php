@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class RolesTableSeeder extends Seeder
+class StatusesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,17 +13,17 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->insert([
+        DB::table('statuses')->insert([
             // 'id' => 1,
-        	'name' => 'user',
+        	'name' => 'in progress',
         	'created_at' => date('Y-m-d H:i:s')
         ]);
-        DB::table('roles')->insert([
-        	'name' => 'moderator',
+        DB::table('statuses')->insert([
+        	'name' => 'done',
         	'created_at' => date('Y-m-d H:i:s')
         ]);
-        DB::table('roles')->insert([
-            'name' => 'admin',
+        DB::table('statuses')->insert([
+            'name' => 'canceled',
             'created_at' => date('Y-m-d H:i:s')
         ]);
     }

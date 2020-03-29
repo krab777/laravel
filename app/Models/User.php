@@ -1,13 +1,28 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
+    public function getUsers()
+    {
+        $users = DB::table('users')->orderBy('id', 'desc')->get();
+
+        return $users;
+    }
+
+    public function getOneUser($id)
+    {
+        $user = DB::table('users')->where('id', $id)->first();
+
+        return $user;
+    }
+
     use Notifiable;
 
     /**

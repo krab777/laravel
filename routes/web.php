@@ -45,9 +45,9 @@ Route::get('products/{id}', "ProductController@show");
 Route::get('news', "NewsController@get");
 
 
-Route::get('users', "UsersController@index");
+Route::get('users', "UserController@index");
 
-Route::get('users/{id}', "UsersController@show");
+Route::get('users/{id}', "UserController@show");
 
 
 Route::get('/about', "AboutController@index");

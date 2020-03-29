@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\App;
 
 use Illuminate\Http\Request;
-		App::setlocale('ru');
 
 
 class ShopController extends Controller
@@ -50,6 +49,7 @@ class ShopController extends Controller
 
    	public function index()
 	{
+		App::setlocale('ru');
 
 		$items = $this->items;
 
@@ -58,13 +58,10 @@ class ShopController extends Controller
 
 	public function show($id)
 	{
+		App::setlocale('ru');
+
 		$item = $this->items[$id];
 
 		return view('shop.show', compact('item'));
-	}
-
-	public function about()
-	{
-		return view('about');
 	}
 }
