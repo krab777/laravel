@@ -16,17 +16,18 @@ use Illuminate\Support\Str;
 |
 */
 
-
-
-
 $factory->define(Item::class, function (Faker $faker) {
 
-	// $faker->addProvider(new Faker\Provider\Base($faker));
-	// $faker->addProvider(new Base($faker));
-
+	$faker->addProvider(new \Faker\Provider\Base($faker));
+	$faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
+	$faker->addProvider(new \Bezhanov\Faker\Provider\Placeholder($faker));
+	$faker->addProvider(new \Bezhanov\Faker\Provider\Device($faker));
+	
     return [
-        'name' => $faker->title,
-        'description' => $faker->paragraph,
-        'price' => rand(100, 1500) / 100,
+        'name' => $faker->deviceModelName(),
+        'description' => $faker->text(200),
+        'price' => rand(2500, 15000) / 10,
+        'total_count' => rand(3, 15),
+       	'image' => $faker->placeholder('700x400'),
     ];
 });

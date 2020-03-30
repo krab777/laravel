@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->text('description');
             $table->decimal('price', 10, 2);
             $table->integer('total_count')->default(0);
+            $table->string('image')->default('http://placehold.it/700x400');
             $table->timestamps();
         });
     }

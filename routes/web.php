@@ -19,15 +19,15 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/first_page_view', function () {
-	$hello = request('hello');
+// Route::get('/first_page_view', function () {
+// 	$hello = request('hello');
 
-    return view('first_page', compact('hello'));
-});
+//     return view('first_page', compact('hello'));
+// });
 
-Route::get('/first_page', function () {
-    return 'first_page';
-});
+// Route::get('/first_page', function () {
+//     return 'first_page';
+// });
 
 // Route::get('user/{id}', function ($id) {
 //     return 'User '.$id;
@@ -37,25 +37,24 @@ Route::get('/first_page', function () {
 //     return $name;
 // });
 
-Route::get('products', "ProductController@index");
+// Route::get('products', "ProductController@index");
 
-Route::get('products/{id}', "ProductController@show");
+// Route::get('products/{id}', "ProductController@show");
 
 
-Route::get('news', "NewsController@get");
+// Route::get('news', "NewsController@get");
 
 
 Route::get('users', "UserController@index");
 
 Route::get('users/{id}', "UserController@show");
 
-
 Route::get('/about', "AboutController@index");
 
 Route::get('/', "ShopController@index");
 
-Route::get('/{id}', "ShopController@show");
+Route::get('/shop/{id}', "ShopController@show");
 
+Auth::routes();
 
-
-
+Route::get('/home', 'HomeController@index')->name('home');

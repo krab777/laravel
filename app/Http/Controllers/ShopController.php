@@ -2,56 +2,17 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\App;
-
 use Illuminate\Http\Request;
+use App\Models\Shop;
 
 
 class ShopController extends Controller
 {
-	private $items = [
-			[
-				'image' => 'http://placehold.it/700x400',
-				'title' => 'Item One',
-				'price' => '21.99',
-				'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!'
-			], 
-			[
-				'image' => 'http://placehold.it/700x400',
-				'title' => 'Item Two',
-				'price' => '22.99',
-				'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!'
-			], 
-			[
-				'image' => 'http://placehold.it/700x400',
-				'title' => 'Item Three',
-				'price' => '23.99',
-				'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!'
-			],
-			[
-				'image' => 'http://placehold.it/700x400',
-				'title' => 'Item Four',
-				'price' => '24.99',
-				'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!'
-			], 
-			[
-				'image' => 'http://placehold.it/700x400',
-				'title' => 'Item Five',
-				'price' => '23.99',
-				'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!'
-			], 
-			[
-				'image' => 'http://placehold.it/700x400',
-				'title' => 'Item Six',
-				'price' => '23.99',
-				'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!'
-			]
-		];
-
-   	public function index()
+	public function index()
 	{
 		App::setlocale('ru');
 
-		$items = $this->items;
+		$items = (new Shop())->getItems();
 
 		return view('shop.index', compact('items'));
 	}
@@ -59,8 +20,8 @@ class ShopController extends Controller
 	public function show($id)
 	{
 		App::setlocale('ru');
-
-		$item = $this->items[$id];
+		
+		$item = (new Shop())->getOneItem($id);
 
 		return view('shop.show', compact('item'));
 	}
