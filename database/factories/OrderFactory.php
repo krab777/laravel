@@ -18,8 +18,8 @@ use Illuminate\Support\Str;
 
 $factory->define(Order::class, function (Faker $faker) {
     return [
-        'item_id' => rand(100, 1500) / 100,
-        'user_id' => rand(100, 1500) / 100,        
+        'item_id' => rand(1, 10),
+        'user_id' => rand(1, 10),        
         'status_id' => rand(1, 3)
     ];
 });

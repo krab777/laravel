@@ -18,8 +18,8 @@ use Illuminate\Support\Str;
 
 $factory->define(Cart::class, function (Faker $faker) {
     return [
-        'user_id' => rand(100, 1500) / 100,
-        'item_id' => rand(100, 1500) / 100,
+        'user_id' => rand(1, 10),
+        'item_id' => rand(1, 10),
         'price' => rand(1000, 4000) / 100,
         'count' => rand(100, 10000) / 100,
     ];

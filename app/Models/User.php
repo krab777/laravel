@@ -8,7 +8,23 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
-{
+{   
+
+    // Connection between models 
+
+    public function role()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    public function cart()
+    {
+        return $this->hasOne('App\Models\Cart');
+    }
+    
+
+    // Query from users table
+
     public function getUsers()
     {
         $users = DB::table('users')->orderBy('id', 'desc')->get();

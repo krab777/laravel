@@ -16,8 +16,8 @@ class UsersTableSeeder extends Seeder
         	'name' => 'moderator',
 	        'email' => 'email_moderator@gmail.com',
 	        'email_verified_at' => now(),
-	        'password' => 12345,
-	        'remember_token' => Str::random(10),
+	        'password' => 12345678,
+	        // 'remember_token' => Str::random(10),
 	        'role_id' => 2,	        
         ]);
 
@@ -25,11 +25,17 @@ class UsersTableSeeder extends Seeder
         	'name' => 'admin',
 	        'email' => 'email_admin@gmail.com',
 	        'email_verified_at' => now(),
-	        'password' => 12345,
-	        'remember_token' => Str::random(10),
+	        'password' => 12345678,
+	        // 'remember_token' => Str::random(10),
 	        'role_id' => 3,	        
         ]);
 
-   		factory(User::class, 10)->create();
+        factory(User::class, 10)->create();
+   		
+        // foreach (App\Models\Role::all() as $role) {
+        //     factory(User::class, 10)->create([
+        //         'role_id' => $role->id
+        //     ]);
+        // }
     }
 }
