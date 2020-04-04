@@ -51,10 +51,13 @@ Route::get('users/{id}', "UserController@show");
 
 Route::get('/about', "AboutController@index");
 
-Route::get('/', "ShopController@index");
+Route::get('/', "ItemController@index");
 
-Route::get('/shop/{id}', "ShopController@show");
+Route::get('/item/{id}', "ItemController@show");
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/files', 'Dashboard\Files\FileController@index')->name('files.index');

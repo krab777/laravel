@@ -14,12 +14,12 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->belongsToMany('App\Models\Role');
+        return $this->hasOne(Role::class);
     }
 
     public function cart()
     {
-        return $this->hasOne('App\Models\Cart');
+        return $this->hasOne(Cart::class);
     }
     
 

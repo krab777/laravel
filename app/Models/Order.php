@@ -9,12 +9,12 @@ class Order extends Model
 {
     public function items()
     {
-        return $this->belongsToMany('App\Models\Item');
+        return $this->belongsToMany(Item::class);
     }
 
     public function statuses()
     {
-        return $this->belongsToMany('App\Models\Status');
+        return $this->hasOne(Status::class);
     }
 
     protected $hidden = [];

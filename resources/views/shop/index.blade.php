@@ -46,10 +46,10 @@
 
             <div class="col-lg-4 col-md-6 mb-4">             
               <div class="card h-100">
-                <a href="/blog/public/shop/{{ $item->id }}" ><img class="card-img-top" src="{{ $item->image }}" alt=""></a>
+                <a href="/blog/public/item/{{ $item->id }}" ><img class="card-img-top" src="{{ $item->image }}" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="/blog/public/shop/{{ $item->id }}">{{ $item->name }}</a>
+                    <a href="/blog/public/item/{{ $item->id }}">{{ $item->name }}</a>
                   </h4>
                   <h5>$ {{ $item->price }}</h5>
                   <p class="card-text">{{ $item->description }}</p>

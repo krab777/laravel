@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
-use App\Models\Shop;
+use App\Models\Item;
 
 
-class ShopController extends Controller
+class ItemController extends Controller
 {
 	public function index()
 	{
 		App::setlocale('ru');
 
-		$items = (new Shop())->getItems();
+		$items = (new Item())->getItems();
 
 		return view('shop.index', compact('items'));
 	}
@@ -21,7 +21,7 @@ class ShopController extends Controller
 	{
 		App::setlocale('ru');
 		
-		$item = (new Shop())->getOneItem($id);
+		$item = (new Item())->getOneItem($id);
 
 		return view('shop.show', compact('item'));
 	}
