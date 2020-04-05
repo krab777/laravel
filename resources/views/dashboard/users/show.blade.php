@@ -1,4 +1,6 @@
-@extends('layouts.default')
+@extends('dashboard.layouts.dashboard')
+
+@section('title', 'User')
 
 @section('content')
 <div class="container">
@@ -9,8 +11,11 @@
       <p>Users role: <b>{{ $user->role_id }}</b></p>
       <p>Email verified at: <b>{{ $user->email_verified_at }}</b></p>
       <p>Users remember token: <b>{{ $user->remember_token }}</b></p>
+      <p>Updated at: <b>{{ $user->updated_at }}</b></p>
+      <p>Created at: <b>{{ $user->created_at }}</b></p>
+      <p>Password: <b>{{ $user->password }}</b></p>
 
-      <p><a class="btn btn-primary btn-lg" href="/blog/public/users/" role="button">Back</a></p>
+      <p><a class="btn btn-primary btn-lg" href="/blog/public/dashboard/users/" role="button">Back</a></p>
     </div>
   </div>
 </div>

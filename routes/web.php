@@ -45,9 +45,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('news', "NewsController@get");
 
 
-Route::get('users', "UserController@index");
-
-Route::get('users/{id}', "UserController@show");
+// Route::get('users', "UserController@index");
 
 Route::get('/about', "AboutController@index");
 
@@ -61,3 +59,48 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/files', 'Dashboard\Files\FileController@index')->name('files.index');
+
+// Route::get('dashboard', "UserController@index")->name('dashboard.users.index');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('dashboard/users/', "UserController@index")->name('dashboard.users.index');
+Route::get('dashboard/users/create', "UserController@create");
+Route::post('dashboard/users/{id}', 'UserController@store')->name('dashboard.users.store');
+
+
+Route::get('dashboard/users/{id}', "UserController@show");
+
+Route::get('dashboard/users/{id}/edit', 'UserController@edit')->name('dashboard.users.edit');
+Route::PATCH('dashboard/users/{id}', 'UserController@update')->name('dashboard.users.update');
+Route::get('dashboard/users/{id}/delete', 'Dashboard\UserController@destroy')->name('dashboard.users.destroy');
+
+Route::delete('dashboard/users/{id}', 'UserController@destroy')->name('dashboard.users.destroy');
+
+
+
+Route::name('dashboard.')
+    // ->namespace('Dashboard')
+    ->prefix('dashboard')
+    ->group(function () {
+
+        Route::view('/', 'dashboard.index');
+
+		Route::prefix('users')
+            ->name('users.')
+            ->group(function () {
+                Route::resource('/', 'UserController');
+            });
+
+        Route::prefix('items')
+            ->name('items.')
+            ->group(function () {
+                Route::resource('/', 'ItemController');
+            });
+
+    });
+
+// Route::resource('dashboard/users', 'UserController');
+
+

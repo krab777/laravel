@@ -10,7 +10,7 @@
             <a class="nav-link" href="http://localhost/blog/public/">@lang('shop.home')</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/blog/public/users">@lang('shop.to_users')</a>
+            <a class="nav-link" href="http://localhost/blog/public/dashboard">To dashboard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="http://localhost/blog/public/about">@lang('shop.about')</a>
@@ -40,6 +40,20 @@
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                           @csrf
                       </form>
+                      @if (Auth::user()->role_id === 3)
+                          <a class="dropdown-item" href="{{ route('dashboard.users.index') }}">
+                            Admin
+                          </a>
+                      @elseif(Auth::user()->role_id === 2)
+                          <a class="dropdown-item" href="{{ route('dashboard.users.index') }}">
+                            Moderator
+                          </a>
+                      @endif
+                      
+                  </div>
+
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                     
                   </div>
               </li>
           @endguest

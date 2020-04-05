@@ -7,6 +7,12 @@
 	<!-- <link rel="stylesheet" href="{{ mix('/css/app.css') }}"> -->
 	<!-- <link rel="stylesheet" href="{{ 'css/app.css' }}"> -->
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}">  
+  <style>
+  	body {
+	    min-height: 100%;
+	    max-height: 300px;
+  	}
+  </style>
 
 </head>
 <body>
