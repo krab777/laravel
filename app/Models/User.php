@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasOne(Role::class);
+        return $this->belongsTo(Role::class);
     }
 
     public function cart()
@@ -27,14 +27,15 @@ class User extends Authenticatable
 
     public function getUsers()
     {
-        $users = DB::table('users')->orderBy('id', 'desc')->get();
+        $users = User::latest()->with('role')->paginate(10);
 
         return $users;
     }
 
     public function getOneUser($id)
     {
-        $user = DB::table('users')->where('id', $id)->first();
+        // $user = DB::table('users')->where('id', $id)->first();
+        $user = User::with('role')->find($id);        
 
         return $user;
     }

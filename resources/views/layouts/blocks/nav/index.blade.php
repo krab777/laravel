@@ -1,19 +1,16 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark top mb-3">
     <div class="container">
-      <a class="navbar-brand" href="http://localhost/blog/public/">@lang('shop.title')</a>
+      <a class="navbar-brand" href="{{ route('homePage')}}">@lang('shop.title')</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="http://localhost/blog/public/">@lang('shop.home')</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('homePage')}}">@lang('shop.home')</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/blog/public/dashboard">To dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost/blog/public/about">@lang('shop.about')</a>
+            <a class="nav-link" href="{{ route('about')}}">@lang('shop.about')</a>
           </li>
           @guest
               <li class="nav-item">
@@ -45,7 +42,7 @@
                             Admin
                           </a>
                       @elseif(Auth::user()->role_id === 2)
-                          <a class="dropdown-item" href="{{ route('dashboard.users.index') }}">
+                          <a class="dropdown-item" href="{{ route('dashboard.') }}">
                             Moderator
                           </a>
                       @endif

@@ -44,18 +44,21 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at }}</td>
-                    <td>{{ $user->role_id }}</td>
-                    <td><a class="btn btn-info btn-sm" href="{{ route('dashboard.users.show', $user->id ) }}" role="button">Info</a></td>
+                    <td>{{ $user->role->name }}</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="{{ route('dashboard.users.show', $user->id ) }}" role="button">Info</a>
+                    </td>
                     <td>
                         <a class="btn btn-warning btn-sm" href="{{ route('dashboard.users.edit', $user->id ) }}" role="button">Edit</a>
                     </td>
                     <td>
-                        <form action="{{ route('dashboard.users.destroy', $user ?? ''->id)}}" method="post">
+                        <form action="{{ route('dashboard.users.destroy', $user ?? ''->id)}}" method="post" onsubmit = 'return confirm("Do you want to delete this user?"');>
                           @csrf
                           @method('DELETE')
-                          <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                          <button class="btn btn-danger btn-sm" onclick='return confirm("Delete user?")' type="submit">Delete</button>
                         </form>               
-                    </td>                    
+                    </td>     
+                             
                 </tr>
             @empty
                 <tr>
@@ -66,5 +69,14 @@
         </table>
 
         {{ $users->links() }}
+
+            @push('scripts')
+                    <script>
+            function confirmDelete() {
+                    return confirm('Are you sure you want to delete?');
+                }
+        </script>
+        @endpush
     </div>
+
 @endsection

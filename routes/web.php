@@ -47,60 +47,64 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('users', "UserController@index");
 
-Route::get('/about', "AboutController@index");
+Route::get('/about', "AboutController@index")->name('about');
 
-Route::get('/', "ItemController@index");
+Route::get('/', "ItemController@index")->name('homePage');
 
 Route::get('/item/{id}', "ItemController@show");
 
+Route::get('/cart', "Cart@index")->name('homePage');
+
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/files', 'Dashboard\Files\FileController@index')->name('files.index');
 
-// Route::get('dashboard', "UserController@index")->name('dashboard.users.index');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::get('dashboard/users', "UserController@index")->name('dashboard.users.index');
 
-Route::get('dashboard/users/', "UserController@index")->name('dashboard.users.index');
-Route::get('dashboard/users/create', "UserController@create");
-Route::post('dashboard/users/{id}', 'UserController@store')->name('dashboard.users.store');
+// Route::get('/dashboard', function () {
+//     return view('dashboard.index');
+// })->name('dashboard');
 
+// Route::get('dashboard/users/', "UserController@index")->name('dashboard.users.index');
+// Route::get('dashboard/users/create', "UserController@create")->name('dashboard.users.create');
+// Route::post('dashboard/users/{id}', 'UserController@store')->name('dashboard.users.store');
 
-Route::get('dashboard/users/{id}', "UserController@show");
+// Route::get('dashboard/users/{id}', "UserController@show")->name('dashboard.users.show');
 
-Route::get('dashboard/users/{id}/edit', 'UserController@edit')->name('dashboard.users.edit');
-Route::PATCH('dashboard/users/{id}', 'UserController@update')->name('dashboard.users.update');
-Route::get('dashboard/users/{id}/delete', 'Dashboard\UserController@destroy')->name('dashboard.users.destroy');
-
-Route::delete('dashboard/users/{id}', 'UserController@destroy')->name('dashboard.users.destroy');
-
-
+// Route::get('dashboard/users/{id}/edit', 'UserController@edit')->name('dashboard.users.edit');
+// Route::PATCH('dashboard/users/{id}', 'UserController@update')->name('dashboard.users.update');
+// Route::delete('dashboard/users/{id}', 'UserController@destroy')->name('dashboard.users.destroy');
 
 Route::name('dashboard.')
-    // ->namespace('Dashboard')
     ->prefix('dashboard')
     ->group(function () {
 
+        // Route::view('/', 'dashboard.index')->middleware('role:admin|moderator');
         Route::view('/', 'dashboard.index');
 
-		Route::prefix('users')
-            ->name('users.')
-            ->group(function () {
-                Route::resource('/', 'UserController');
-            });
+        // Route::resource('users', 'UserController')->middleware('role:admin');
+        Route::resource('users', 'UserController');
 
-        Route::prefix('items')
-            ->name('items.')
-            ->group(function () {
-                Route::resource('/', 'ItemController');
-            });
+        Route::resource('items', 'ItemController');
 
-    });
+		// Route::prefix('users')
+  //           ->middleware('role:admin')
+  //           ->name('users.')
+  //           ->group(function () {
+  //               Route::resource('/users', 'UserController');
+  //           });
 
-// Route::resource('dashboard/users', 'UserController');
+        // Route::prefix('items')
+        //     ->name('items.')
+        //     ->group(function () {
+        //         Route::resource('/', 'ItemController');
+        //     });
+
+});
+
+Route::resource('/cart', 'CartController');
 
 

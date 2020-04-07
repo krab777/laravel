@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use App\Models\User;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\UpdateRequest;
+use Illuminate\Support\Facades\Hash;
+
+
 use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
@@ -42,7 +46,12 @@ class UserController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        User::create($request->all());
+        $user = User::create($request->all());
+
+        $user->fill([
+            'password' => Hash::make($request['password'])
+        ])->save();
+
         return redirect()->route('dashboard.users.index')->with('success', "User with name: $request->name and email: $request->email was Created Successfully!");
     }
 
@@ -78,15 +87,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreRequest $request, $id)
+    public function update(UpdateRequest $request, User $user)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($user->id);
 
-        $user->fill($request->all());
-        $user->save();
+        $data = $request->only(['name', 'password', 'email', 'role_id']);
 
-        // return redirect('dashboard.users.index');  
-        return redirect()->route('dashboard.users.index')->with('success', "User with id: $id and email: $user->email was Updated Successfully!");
+        if (isset($data['password']) && $data['password']) {
+            $data['password'] = bcrypt($data['password']);
+        }
+
+        if (!isset($data['password'])) {
+            unset($data['password']);
+        }
+        $user->update($data);
+        return redirect()->route('dashboard.users.index')->with('success', "User with id: $user->id and email: $user->email was Updated Successfully!");
     }
 
     /**

@@ -14,18 +14,18 @@ class UsersTableSeeder extends Seeder
     {
     	DB::table('users')->insert([
         	'name' => 'moderator',
-	        'email' => 'email_moderator@gmail.com',
+	        'email' => 'moderator@gmail.com',
 	        'email_verified_at' => now(),
-	        'password' => 12345678,
+	        'password' => bcrypt('123'),
 	        // 'remember_token' => Str::random(10),
 	        'role_id' => 2,	        
         ]);
 
     	DB::table('users')->insert([
         	'name' => 'admin',
-	        'email' => 'email_admin@gmail.com',
+	        'email' => 'admin@gmail.com',
 	        'email_verified_at' => now(),
-	        'password' => 12345678,
+	        'password' => bcrypt('123'),
 	        // 'remember_token' => Str::random(10),
 	        'role_id' => 3,	        
         ]);

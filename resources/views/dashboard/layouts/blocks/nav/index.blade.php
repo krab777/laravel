@@ -10,11 +10,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                @if (Auth::user()->role_id === 3)
+                @if ((Auth::user()->role_id ?? '') === 3)
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('dashboard.users*') ? 'active' : '' }}" href="{{ route('dashboard.users.index') }}">Users</a>
                     </li>
-                @elseif(Auth::user()->role_id === 2)
+                @elseif((Auth::user()->role_id ?? '') === 2)
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('dashboard.items*') ? 'active' : '' }}" href="{{ route('dashboard.items.index') }}">Items</a>
                     </li>
@@ -37,10 +37,10 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            @if (Auth::user()->role_id === 3)
+                            @if ((Auth::user()->role_id ?? '') === 3)
                                     Admin 
                                 
-                            @elseif(Auth::user()->role_id === 2)
+                            @elseif((Auth::user()->role_id ?? '') === 2)
                                     Moderator 
                             @endif  
                             <span class="caret"></span>

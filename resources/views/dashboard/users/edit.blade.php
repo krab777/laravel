@@ -19,8 +19,8 @@
         </div>
 
         <div class="mx-auto">
-            {!! Form::open(['url' => route('dashboard.users.update', $user->id)]) !!}
-            @method('PATCH') 
+            {!! Form::open(['url' => route('dashboard.users.update', $user)]) !!}
+            @method('put') 
             @csrf
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
@@ -40,7 +40,7 @@
                             @enderror
 
                             {!! Form::label('password', 'Password') !!}
-                            {!! Form::text('password', $user->password, ['class' => 'form-control']) !!}
+                            {!! Form::password('password', ['class' => 'form-control']) !!}
 
                             @error('password')
                                 <div class="alert alert-danger mt-3" >{{ $message }}</div>
