@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Auth;
 class Cart extends Model
 {
     protected $fillable = [
-        'user_id', 'item_id', 'price'
+        'user_id', 'item_id', 'price', 'count'
     ];
+    protected $guarded = [];
+
 
     public function user()
     {
@@ -29,7 +31,6 @@ class Cart extends Model
 
     public function getCartItems()
     {
-
         $userId = Auth::user()->id;    	
     	
         $items = Cart::with('items')->where("user_id", $userId)->get();

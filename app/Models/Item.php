@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class Item extends Model
 {
+
+    protected $guarded = [];
+
 	public function getItems()
     {
         $items = DB::table('items')->orderBy('id', 'desc')->get();
@@ -25,7 +28,7 @@ class Item extends Model
     {
         // return $this->belongsToMany(Cart::class);
         return $this->hasMany(Cart::class);
-        
+
     }
 
     public function orders()

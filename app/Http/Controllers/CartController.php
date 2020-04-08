@@ -17,10 +17,7 @@ class CartController extends Controller
         $item = Item::find($id);
         $cart = Cart::create(['user_id' => $request->user()->id, 'item_id' => $item->id, 'price' => $item->price]);
 
-        // return redirect()->route('cart.index');
-        return redirect()->back();
-
-        
+        return redirect()->back();       
     }
 
 
@@ -32,7 +29,7 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = ( new Cart())->getCartItems();
-        // dd($cart);
+        // dd($cartItems);
         return view('cart.index', compact('cartItems'));
     }
 
@@ -97,19 +94,23 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $id)
+    public function update(Request $request, $id)
     {
-        $item = Item::find($id);
-        // $cartItems = ( new Cart())->getCartItems();
 
-        // dd($item);
-        // return view('cart.index', compact('cartItems'));
+        // dd($request->count);
+        $data = Cart::findOrFail($id);
+        // dd($data);
+        // $thisItem = Item::findOrFail($item);
 
-        $data = $request->only(['name', 'password', 'email', 'role_id']);
+        $data->fill(['count' => $request->count])->update();
+        // dd($data->count);
 
-        $item->save($data);
-        dd($item);
-        // return redirect()->route('cart');
+        // $data = $request->only(['count' => $request->count ])->update();
+
+        
+        // $cart->update($data);
+        return redirect()->route('cart.index')->with('success', " was Updated Successfully!");
+
     }
 
     /**
@@ -120,6 +121,9 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cart = Cart::find($id);
+        $cart->delete();
+
+        return redirect()->route('cart.index')->with('success', "Item was Deleted Successfully!");
     }
 }
