@@ -16,7 +16,7 @@
 	        @enderror
 
             {!! Form::label('password', 'Password') !!}
-            {!! Form::text('password', null, ['class' => 'form-control']) !!}
+            {!! Form::password('password', ['class' => 'form-control']) !!}
 
             @error('password')
 	            <div class="alert alert-danger mt-3" >{{ $message }}</div>

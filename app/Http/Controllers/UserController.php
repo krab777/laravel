@@ -23,7 +23,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(10);
+        // $users = User::latest()->paginate(10);
+        $users = ( new User())->getUsers();
 
         return view('dashboard.users.index', compact('users'));
     }

@@ -12,6 +12,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('about')}}">@lang('shop.about')</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('cart.index')}}">Cart</a>
+          </li>
           @guest
               <li class="nav-item">
                   <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

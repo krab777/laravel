@@ -43,16 +43,22 @@
         </div> -->
         <div class="row">
           @forelse($items as $item)   
-
             <div class="col-lg-4 col-md-6 mb-4">             
-              <div class="card h-100">
-                <a href="{{$item->id}}" ><img class="card-img-top" src="{{ $item->image }}" alt=""></a>
-                <div class="card-body">
+              <div class="card h-100 ">
+                <a href="item/{{$item->id}}" ><img class="card-img-top" src="{{ $item->image }}" alt=""></a>
+                <div class="card-body d-flex align-items-start flex-column">
                   <h4 class="card-title">
-                    <a href="/blog/public/item/{{ $item->id }}">{{ $item->name }}</a>
+                    <a href="item/{{ $item->id }}">{{ $item->name }}</a>
                   </h4>
+                  
                   <h5>$ {{ $item->price }}</h5>
                   <p class="card-text">{{ $item->description }}</p>
+
+                  <div class="mt-auto align-self-center">
+                    <div>
+                      <a class="align-bottom btn btn-success" href="{{ route('addToCart', $item->id) }} ">Add to cart</a>
+                    </div>
+                  </div>
                 </div>
               </div>              
             </div>

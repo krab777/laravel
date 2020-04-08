@@ -13,11 +13,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
+Route::get('/files', 'Dashboard\Files\FileController@index')->name('files.index');
+
+Route::name('dashboard.')
+    ->prefix('dashboard')
+    ->group(function () {
+
+        // Route::view('/', 'dashboard.index')->middleware('role:admin|moderator');
+        Route::view('/', 'dashboard.index');
+
+        // Route::resource('users', 'UserController')->middleware('role:admin');
+        Route::resource('users', 'UserController');
+
+        Route::resource('items', 'ItemController');
+
+});
+
+Route::get('/about', "AboutController@index")->name('about');
+
+Route::get('/', "ItemController@index")->name('homePage');
+
+Route::resource('/cart', 'CartController')->middleware('auth');
+
+Route::get('/add-to-cart/{id}', "CartController@addToCart")->name('addToCart')->middleware('auth');
+
+
+
+
+
+
+// Route::get('/add-to-cart/{id}', "CartController@addToCart")->name('item.addToCart');
+
+
+
 // Route::get('/', function () {
 // 	// $data = request()
 //     return view('welcome');
 // });
-
 
 // Route::get('/first_page_view', function () {
 // 	$hello = request('hello');
@@ -41,26 +75,13 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('products/{id}', "ProductController@show");
 
-
 // Route::get('news', "NewsController@get");
-
 
 // Route::get('users', "UserController@index");
 
-Route::get('/about', "AboutController@index")->name('about');
-
-Route::get('/', "ItemController@index")->name('homePage');
-
-Route::get('/item/{id}', "ItemController@show");
-
-Route::get('/cart', "Cart@index")->name('homePage');
-
-
-Auth::routes();
 
 
 
-Route::get('/files', 'Dashboard\Files\FileController@index')->name('files.index');
 
 // Route::get('dashboard/users', "UserController@index")->name('dashboard.users.index');
 
@@ -78,33 +99,6 @@ Route::get('/files', 'Dashboard\Files\FileController@index')->name('files.index'
 // Route::PATCH('dashboard/users/{id}', 'UserController@update')->name('dashboard.users.update');
 // Route::delete('dashboard/users/{id}', 'UserController@destroy')->name('dashboard.users.destroy');
 
-Route::name('dashboard.')
-    ->prefix('dashboard')
-    ->group(function () {
 
-        // Route::view('/', 'dashboard.index')->middleware('role:admin|moderator');
-        Route::view('/', 'dashboard.index');
-
-        // Route::resource('users', 'UserController')->middleware('role:admin');
-        Route::resource('users', 'UserController');
-
-        Route::resource('items', 'ItemController');
-
-		// Route::prefix('users')
-  //           ->middleware('role:admin')
-  //           ->name('users.')
-  //           ->group(function () {
-  //               Route::resource('/users', 'UserController');
-  //           });
-
-        // Route::prefix('items')
-        //     ->name('items.')
-        //     ->group(function () {
-        //         Route::resource('/', 'ItemController');
-        //     });
-
-});
-
-Route::resource('/cart', 'CartController');
 
 
