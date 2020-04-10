@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     {
     	DB::table('users')->insert([
         	'name' => 'moderator',
-	        'email' => 'moderator@gmail.com',
+	        'email' => 'moderator@mail.com',
 	        'email_verified_at' => now(),
 	        'password' => bcrypt('123'),
 	        // 'remember_token' => Str::random(10),
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
 
     	DB::table('users')->insert([
         	'name' => 'admin',
-	        'email' => 'admin@gmail.com',
+	        'email' => 'admin@mail.com',
 	        'email_verified_at' => now(),
 	        'password' => bcrypt('123'),
 	        // 'remember_token' => Str::random(10),

@@ -39,6 +39,14 @@ Route::resource('/cart', 'CartController')->middleware('auth');
 
 Route::get('/add-to-cart/{id}', "CartController@addToCart")->name('addToCart')->middleware('auth');
 
+Route::get('/add-to-order', "OrderController@addToOrder")->name('addToOrder')->middleware('auth');
+
+Route::get('/orders', "OrderController@index")->name('orders')->middleware('auth');
+
+
+
+Route::get('/item/{id}', "ItemController@show");
+
 
 
 

@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
         // dd($this->user->id);
         return [
             'name' => 'required|string|min:2',
-            'email' => 'required|string|min:2|unique:users,email,' . $this->user->id,          
+            'email' => 'required|string|email|min:2|unique:users,email,' . $this->user->id,          
             'password' => 'nullable|string|min:2',
         ];
     }

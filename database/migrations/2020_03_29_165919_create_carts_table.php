@@ -17,8 +17,9 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();  
             $table->bigInteger('item_id')->unsigned();    
-            $table->decimal('price', 10, 2);
-            $table->integer('count')->default(1);
+            $table->decimal('price', 10, 2)->unsigned();
+            $table->integer('count')->default(1)->unsigned();
+            $table->integer('sum')->default(1)->unsigned();
             $table->timestamps();
         });
 

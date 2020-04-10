@@ -4,9 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Models\Cart;
+use App\Models\Item;
+use App\Models\User;
 
 class OrderController extends Controller
 {
+    public function addToOrder(Request $request, User $user)
+    {
+        $cartItems = ( new Cart())->getCartItems();
+        $serializedCartItems = serialize($cartItems);
+        // $unSerializedCartItems = unserialize($serializedCartItems);
+        // dd($request->user()->id);
+        // dd($request, $cartItems, $serializedCartItems, $serializedCartItems);
+
+        // $item = Item::find($id);
+        // dd(Cart::where("user_id", $request->user()->id)->sum('sum'));
+        
+        $order = Order::create([
+            'user_id' => $request->user()->id,
+            'cart' => $serializedCartItems,
+            'sum' => Cart::where("user_id", $request->user()->id)->sum('sum'),
+            // 'price' => $item->price,
+            // 'sum' => $item->price 
+        ]);
+
+        $clearCart = ( new Cart())->clearCart();
+
+        return redirect()->route('homePage')->with('success', "Your order was successfully made!");
+        // return redirect()->back();       
+
+
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +46,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $userOrders = ( new Order())->getOrders();
+
+        return view('shop.orders', compact('userOrders'));
     }
 
     /**
@@ -24,7 +58,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

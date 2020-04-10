@@ -28,14 +28,13 @@
 
         <table class="table table-striped">
             <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Created at</th>
-                <th scope="col">Role</th>
-                <th colspan = 3>Functions</th>             
-            </tr>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th colspan = 3>Functions</th>             
+                </tr>
             </thead>
             <tbody>
             @forelse($users as $user)
@@ -43,7 +42,6 @@
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->created_at }}</td>
                     <td>{{ $user->role->name }}</td>
                     <td>
                         <a class="btn btn-info btn-sm" href="{{ route('dashboard.users.show', $user->id ) }}" role="button">Info</a>
@@ -70,13 +68,6 @@
 
         {{ $users->links() }}
 
-            @push('scripts')
-                    <script>
-            function confirmDelete() {
-                    return confirm('Are you sure you want to delete?');
-                }
-        </script>
-        @endpush
     </div>
 
 @endsection

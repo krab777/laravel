@@ -27,8 +27,8 @@ class Item extends Model
     public function cart()
     {
         // return $this->belongsToMany(Cart::class);
-        return $this->hasMany(Cart::class);
-
+        return $this->belongsTo(Cart::class, 'id', 'item_id');
+        // return $this->belongsTo(Cart::class);
     }
 
     public function orders()

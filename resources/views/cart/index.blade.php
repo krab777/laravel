@@ -11,48 +11,65 @@
     </div>
 
   <div class="row">
-
+    
     @forelse($cartItems as $cartItem)   
-
-      <div class="col-lg-4 col-md-6 mb-4">             
-        <div class="card h-100">
-          <div class="card-body">
-            <p class="card-text">ID: {{ $cartItem->id }}</p>
-            <p class="card-text">User id {{ $cartItem->user_id }}</p>
-            <p class="card-text">Item id: {{ $cartItem->item_id }}</p>
-            <p class="card-text">Item price: {{ $cartItem->price }}</p>
+      <?php 
+        // $arr = explode(",", $cartItem->items);
+        $arrs = json_decode($cartItem->items);
+        // dd($arr[0]);
+       ?>
+      @forelse($arrs as $arr) 
+      <div class="col-lg-6 col-md-6 mb-4">             
+        <div class="card h-100 ">
+          <a href="item/{{ $arr->id }}"><img class="card-img-top" src="{{ $arr->image }}" alt=""></a>
+          <div class="card-body d-flex align-items-start flex-column">
+            <h4 class="card-title"> 
+                <a href="item/{{ $arr->id }}">{{ $arr->name }}</a>                
+            </h4>
             
-            <div class="">
-              <div class="mr-auto">
-                {!! Form::open(['url' => route('cart.update', $cartItem->id, $cartItem->item_id)]) !!}
-                  @method('put') 
-                  @csrf
-                  <p class="card-text">Cart count: {!! Form::number('count', $cartItem->count); !!}</p>
+            <h5>$ {{ $arr->price }}</h5>           
 
-                  <div class="form-group">
-                      {!! Form::submit('Edit', ['class' => 'btn btn-success']); !!}
-                  </div>
-                {!! Form::close() !!}
-              </div>   
-              
-              <div> 
-                <form action="{{ route('cart.destroy', $cartItem)}}" method="post" >
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" onclick='return confirm("Delete this item?")' type="submit">Delete</button>
-                </form>   
-              </div>                       
+            <div class="mt-auto align-self-center">    
+                <div>                    
+                    <p class="card-text">ID: {{ $cartItem->id }} | User id: {{ $cartItem->user_id }} | Item id: {{ $cartItem->item_id }}</p>
+                    <p class="card-text">Total price of items: {{ $cartItem->price * $cartItem->count }}</p>
+                </div>
+
+                <div class="mr-auto">
+                  {!! Form::open(['url' => route('cart.update', $cartItem)]) !!}
+                    @method('put') 
+                    @csrf
+                    <p class="card-text">Count items: {!! Form::number('count', $cartItem->count); !!}</p>
+
+                    <div class="form-group">
+                        {!! Form::submit('Edit', ['class' => 'btn btn-success']); !!}
+                    </div>
+                  {!! Form::close() !!}
+                </div>   
+
+                <div> 
+                  <form action="{{ route('cart.destroy', $cartItem)}}" method="post" >
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" onclick='return confirm("Delete this item?")' type="submit">Delete</button>
+                  </form>   
+                </div>                       
             </div>
-
-                
           </div>
-        </div>              
-      </div>
-
+        </div>   
+        @empty
+          No products
+        @endforelse            
+      </div>     
       @empty
         No products
       @endforelse 
   </div>
+
+  <a class="btn btn-success" href="{{ route('addToOrder')}}">Make order</a>                
+  
+  <p class="">Total sum: {{ App\Models\Cart::where("user_id", Auth::user()->id)->sum('sum') }} </p>
+
 </div>
   
 @endsection

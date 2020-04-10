@@ -22,7 +22,7 @@
 	            <div class="alert alert-danger mt-3" >{{ $message }}</div>
 	        @enderror
                         
-            {!! Form::radio('role_id', '1' , false) !!}
+            {!! Form::radio('role_id', '1' , true) !!}
             {!! Form::label('1', 'User') !!}<br>
 
             {!! Form::radio('role_id', '2' , false) !!}

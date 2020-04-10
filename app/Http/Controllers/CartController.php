@@ -13,9 +13,15 @@ class CartController extends Controller
     public function addToCart(Request $request, $id, User $user)
     {
         $cartItems = ( new Cart())->getCartItems();
-
+        // dd($request);
         $item = Item::find($id);
-        $cart = Cart::create(['user_id' => $request->user()->id, 'item_id' => $item->id, 'price' => $item->price]);
+        $cart = Cart::create([
+            'user_id' => $request->user()->id,
+            'item_id' => $item->id,
+            'price' => $item->price,
+            // 'sum' => ($request->count ?? $item->price) * $request->count
+            'sum' => $item->price 
+        ]);
 
         return redirect()->back();       
     }
@@ -30,6 +36,7 @@ class CartController extends Controller
     {
         $cartItems = ( new Cart())->getCartItems();
         // dd($cartItems);
+
         return view('cart.index', compact('cartItems'));
     }
 
@@ -52,17 +59,7 @@ class CartController extends Controller
     // public function store(Request $request, Item $item, User $user)
     public function store(Request $request)    
     {
-        dd($request);
-        // $data = Item::find($item);
-        // dd($request->user()->id, $request);
 
-        // $data = ($request->only(['item_id']));
-        // // $data->fill([
-        // //     'user_id' => $request->user()->id,
-        // //     // 'item_id' => $item->id
-        // // ])->save();
-        // dd($data);
-        // return redirect()->route('dashboard.users.index')->with('success', "User with name: $request->name and email: $request->email was Created Successfully!");
     }
 
     /**
@@ -96,17 +93,21 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         // dd($request->count);
         $data = Cart::findOrFail($id);
         // dd($data);
         // $thisItem = Item::findOrFail($item);
-
-        $data->fill(['count' => $request->count])->update();
+        $item = Item::find($id);
+        // dd($id);
+        if ($request->count <= 0) {
+            $cart = Cart::find($id);
+            $cart->delete();
+        }
+        
+        $data->fill(['count' => $request->count,  'sum' => $data['price'] * $request->count])->update();
         // dd($data->count);
 
         // $data = $request->only(['count' => $request->count ])->update();
-
         
         // $cart->update($data);
         return redirect()->route('cart.index')->with('success', " was Updated Successfully!");

@@ -9,6 +9,8 @@ class Status extends Model
 {
     public function orders()
     {
-        return $this->belongsToMany(Order::class);
+        // return $this->belongsTo(Order::class);
+        // return $this->hasOne(Order::class);
+        
     }
 }
