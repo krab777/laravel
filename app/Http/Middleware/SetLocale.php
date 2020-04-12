@@ -15,7 +15,7 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {
-        $locale = $request->getPreferredLanguage(['en', 'ru']);
+        $locale = $request->getPreferredLanguage(['en']);
         app()->setLocale($locale);
 
         return $next($request);

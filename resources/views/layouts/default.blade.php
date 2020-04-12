@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}">  
   <style>
   	body {
-	    min-height: 100%;
+	    height: 100%;
 	    max-height: 300px;
   	}
   </style>

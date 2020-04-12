@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::get('/', "ItemController@index")->name('homePage');
+
 
 Route::get('/files', 'Dashboard\Files\FileController@index')->name('files.index');
 
@@ -21,19 +23,24 @@ Route::name('dashboard.')
     ->prefix('dashboard')
     ->group(function () {
 
-        // Route::view('/', 'dashboard.index')->middleware('role:admin|moderator');
-        Route::view('/', 'dashboard.index');
+        Route::view('/', 'dashboard.index')->middleware('role:admin|moderator');
+        // Route::view('/', 'dashboard.index');
 
-        // Route::resource('users', 'UserController')->middleware('role:admin');
-        Route::resource('users', 'UserController');
+        Route::resource('users', 'UserController')->middleware('role:admin');
+        // Route::resource('users', 'UserController');
 
-        Route::resource('items', 'ItemController');
+        Route::resource('items', 'ItemController')->middleware('role:admin|moderator');
+        Route::get('/items', 'ItemController@getAll')->middleware('auth')->name('watchItems');
+        Route::get('/item/{id}', 'ItemController@getOneItem')->middleware('auth')->name('getOneItem');
+
+        Route::resource('orders', 'OrderController')->middleware('role:admin|moderator');        
+        Route::get('/orders', "OrderController@getAll")->name('orders')->middleware('auth');
+        Route::get('/orders/{id}', "OrderController@show")->name('order')->middleware('auth');
 
 });
 
 Route::get('/about', "AboutController@index")->name('about');
 
-Route::get('/', "ItemController@index")->name('homePage');
 
 Route::resource('/cart', 'CartController')->middleware('auth');
 
@@ -45,7 +52,9 @@ Route::get('/orders', "OrderController@index")->name('orders')->middleware('auth
 
 
 
-Route::get('/item/{id}', "ItemController@show");
+
+
+Route::get('/item/{id}', "ItemController@show")->name('item');
 
 
 

@@ -7,20 +7,25 @@ use Illuminate\Support\Facades\DB;
 
 class Item extends Model
 {
-
-    protected $guarded = [];
+    protected $fillable = [
+        'name', 'description', 'price', 'total_count', 'image'
+    ];
+    protected $hidden = [];
 
 	public function getItems()
     {
-        $items = DB::table('items')->orderBy('id', 'desc')->get();
+        // $items = DB::table('items')->orderBy('id', 'desc')->get();
+        $items = Item::latest()->paginate(10);
+
         // dd($items);
         return $items;
     }
 
     public function getOneItem($id)
     {
-        $item = DB::table('items')->where('id', $id)->first();
-
+        // $item = DB::table('items')->where('id', $id)->first();
+        $item = Item::find($id);
+        // dd($item);
         return $item;
     }
 

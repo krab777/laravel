@@ -3,10 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-// use App\Models\User;
-// use Illuminate\Foundation\Auth;
-
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
@@ -25,14 +22,16 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class, );
+        // return $this->hasMany(User::class);
+        
     }
 
     public function getOrders()
     {
-        $orders = Order::latest()->with('user')->get();
-        // $orders = Auth::user()->orders;
-        // $orders = preg_replace('!s:(\d+):"(.*?)";!e', "'s:'.strlen('$2').':\"$2\";'", $orders);
-		// var_dump(unserialize($orders));
+    	$userId = Auth::user()->id; 
+    	
+        $orders = Order::latest()->with('user')->where('user_id', $userId)->paginate(10);
+
         $orders->transform(function ($order, $key)
         {
         	$order->cart = unserialize($order->cart);
@@ -42,8 +41,21 @@ class Order extends Model
         return $orders;
     }
 
+    public function getOneOrder($order)
+    {
+        $userOrder = Order::where('id', $order)->get();
+
+        $userOrder->transform(function ($order, $key)
+        {
+            $order->cart = unserialize($order->cart);
+            return $order;
+        }); 
+
+        return $userOrder;
+    }
+
     protected $fillable = [
-        'user_id', 'item_id', 'cart', 'sum'
+        'user_id', 'item_id', 'cart', 'sum', 'status_id'
     ];
 
     protected $hidden = [];

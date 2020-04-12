@@ -14,10 +14,22 @@
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('dashboard.users*') ? 'active' : '' }}" href="{{ route('dashboard.users.index') }}">Users</a>
                     </li>
-                @elseif((Auth::user()->role_id ?? '') === 2)
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('dashboard.watchItems*') ? 'active' : '' }}" href="{{ route('dashboard.watchItems') }}">Items</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('dashboard.orders*') ? 'active' : '' }}" href="{{ route('dashboard.orders') }}">Orders</a>
+                    </li>
+                @elseif((Auth::user()->role_id ?? '') === 3)
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('dashboard.items*') ? 'active' : '' }}" href="{{ route('dashboard.items.index') }}">Items</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('dashboard.orders*') ? 'active' : '' }}" href="{{ route('dashboard.orders') }}">Orders</a>
+                    </li>
+
+                    
                 @endif              
                 
             </ul>

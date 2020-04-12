@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Item;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -14,30 +15,17 @@ class OrderController extends Controller
     {
         $cartItems = ( new Cart())->getCartItems();
         $serializedCartItems = serialize($cartItems);
-        // $unSerializedCartItems = unserialize($serializedCartItems);
-        // dd($request->user()->id);
-        // dd($request, $cartItems, $serializedCartItems, $serializedCartItems);
-
-        // $item = Item::find($id);
-        // dd(Cart::where("user_id", $request->user()->id)->sum('sum'));
         
         $order = Order::create([
-            'user_id' => $request->user()->id,
+            'user_id' => Auth::user()->id,
             'cart' => $serializedCartItems,
-            'sum' => Cart::where("user_id", $request->user()->id)->sum('sum'),
-            // 'price' => $item->price,
-            // 'sum' => $item->price 
+            'sum' => Cart::where("user_id", Auth::user()->id)->sum('sum'),
         ]);
 
         $clearCart = ( new Cart())->clearCart();
 
         return redirect()->route('homePage')->with('success', "Your order was successfully made!");
-        // return redirect()->back();       
-
-
     }
-
-
 
     /**
      * Display a listing of the resource.
@@ -49,6 +37,48 @@ class OrderController extends Controller
         $userOrders = ( new Order())->getOrders();
 
         return view('shop.orders', compact('userOrders'));
+    }
+
+    public function getAll()
+    {
+        $userOrders = ( new Order())->getOrders();
+
+        return view('dashboard.orders.index', compact('userOrders'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $userOrder = (new Order())->getOneOrder($id);
+        // dd($userOrder);
+        return view('dashboard.orders.show', compact('userOrder'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Order $order)
+    {
+        // dd($order->id);
+
+        $order = Order::find($order->id);
+        // dd($order);
+        $data = $request->only(['status_id']);
+
+        $order->update($data);
+        // return redirect()->route('dashboard.order', $order->id)->with('success', "Order was Updated Successfully!");
+
+        return redirect()->back();
+        // return view('dashboard.orders.show', compact('userOrder'));
     }
 
     /**
@@ -73,35 +103,12 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
     {
         //
     }

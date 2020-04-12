@@ -6,26 +6,25 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Item;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Cart\UpdateRequest;
+
 
 class CartController extends Controller
 {
-
     public function addToCart(Request $request, $id, User $user)
     {
         $cartItems = ( new Cart())->getCartItems();
-        // dd($request);
         $item = Item::find($id);
         $cart = Cart::create([
-            'user_id' => $request->user()->id,
+            'user_id' => Auth::user()->id,
             'item_id' => $item->id,
             'price' => $item->price,
-            // 'sum' => ($request->count ?? $item->price) * $request->count
             'sum' => $item->price 
         ]);
 
         return redirect()->back();       
     }
-
 
     /**
      * Display a listing of the resource.
@@ -93,24 +92,26 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->count);
         $data = Cart::findOrFail($id);
-        // dd($data);
-        // $thisItem = Item::findOrFail($item);
+        $item = Item::find($data->item_id);
+        // dd($item->total_count);
+
+        $totalCount = $item->total_count;
+        // dd($totalCount);
+
+        $validatedCount = $request->validate([
+            'count' => 'required|integer|max:10',
+        ]);
+
         $item = Item::find($id);
-        // dd($id);
-        if ($request->count <= 0) {
+        if ($validatedCount['count'] <= 0) {
             $cart = Cart::find($id);
             $cart->delete();
         }
         
-        $data->fill(['count' => $request->count,  'sum' => $data['price'] * $request->count])->update();
-        // dd($data->count);
+        $data->fill(['count' => $validatedCount['count'],  'sum' => $data->price * $validatedCount['count']])->update();
 
-        // $data = $request->only(['count' => $request->count ])->update();
-        
-        // $cart->update($data);
-        return redirect()->route('cart.index')->with('success', " was Updated Successfully!");
+        return redirect()->route('cart.index')->with('success', "Items in Your cart was Updated Successfully!");
 
     }
 

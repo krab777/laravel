@@ -25,6 +25,8 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Cart::class);
+        // return $this->belongsTo(Cart::class);
+
     }
     
 
