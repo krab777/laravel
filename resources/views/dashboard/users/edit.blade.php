@@ -44,7 +44,14 @@
 
                             @error('password')
                                 <div class="alert alert-danger mt-3" >{{ $message }}</div>
-                            @enderror                            
+                            @enderror            
+
+                            {!! Form::label('password_confirmation', 'Confirm Password') !!}
+                            {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+
+                            @error('password_confirmation')
+                                <div class="alert alert-danger mt-3" >{{ $message }}</div>
+                            @enderror                
 
                             {!! Form::radio('role_id', '1' , $user->role_id == 1) !!}
                             {!! Form::label('1', 'User') !!}<br>

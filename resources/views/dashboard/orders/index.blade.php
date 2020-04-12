@@ -44,28 +44,29 @@
                     <td scope="row">{{ $order->user->email }}</td>
                     <td scope="row">{{ $order->sum }}</td>                    
                     <td scope="row">
-                        <div>{{ $order->statuses->name }}</div>
-                        <div>
+                        <div class="">
                             {!! Form::open(['url' => route('dashboard.orders.update', $order)]) !!}
                               @method('put') 
                               @csrf
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            {!! Form::label('status_id', 'Status') !!}
-                                            {!! Form::select('status_id', ['1' => 'In progress', '2' => 'Done', '3'=> 'Canceled'], $order->status_id); !!}
+                                <div class="form-inline">
+                                    <div class="">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                {!! Form::select('status_id', ['1' => 'In progress', '2' => 'Done', '3'=> 'Canceled'], $order->status_id); !!}
 
-                                            @error('status')
-                                                <div class="alert alert-danger mt-3">{{ $message }}</div>
-                                            @enderror
+                                                @error('status')
+                                                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                                                @enderror
 
-                                        </div>        
+                                            </div>        
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {!! Form::submit('Edit', ['class' => 'btn btn-success btn-sm']); !!}
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    {!! Form::submit('Edit', ['class' => 'btn btn-success']); !!}
-                                </div>
+                                
                             {!! Form::close() !!}
                         </div>                        
                     </td>

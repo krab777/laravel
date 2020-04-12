@@ -41,6 +41,19 @@ class Order extends Model
         return $orders;
     }
 
+    public function getOrdersDash()
+    {        
+        $orders = Order::latest()->with('user')->paginate(10);
+
+        $orders->transform(function ($order, $key)
+        {
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+
+        return $orders;
+    }
+
     public function getOneOrder($order)
     {
         $userOrder = Order::where('id', $order)->get();

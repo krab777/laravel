@@ -12,7 +12,7 @@
         </nav>
 
         <div class="jumbotron">
-            <h1 class="display-4">Items</h1>
+            <h1 class="display-6">Items</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
                 to featured content or information.</p>
             <a class="btn btn-primary btn-lg" href="{{ route('dashboard.items.create') }}" role="button">Add
@@ -56,7 +56,7 @@
                         <form action="{{ route('dashboard.items.destroy', $item ?? ''->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <button class="btn btn-danger btn-sm"  type="submit">Delete</button>
+                          <button class="btn btn-danger btn-sm" onclick='return confirm("Delete item?")' type="submit">Delete</button>
                           <!-- onclick='return confirm("Delete item?")' -->
                         </form>               
                     </td>     

@@ -41,7 +41,7 @@ class OrderController extends Controller
 
     public function getAll()
     {
-        $userOrders = ( new Order())->getOrders();
+        $userOrders = ( new Order())->getOrdersDash();
 
         return view('dashboard.orders.index', compact('userOrders'));
     }
