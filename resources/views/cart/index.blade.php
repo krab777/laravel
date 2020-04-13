@@ -66,21 +66,14 @@
         <div class="mx-auto">
           <h2>Your cart is empty now</h2>
         </div>
-      @endforelse 
-
+      @endforelse
   </div>
-
-      @if(!empty($cartItems))   
-        <div class="mr-auto">
-          <a class="btn btn-success" href="{{ route('addToOrder')}}">Make order</a>
-          <p class="">Total sum: {{ App\Models\Cart::where("user_id", Auth::user()->id)->sum('sum') }}</p>
-        </div>        
-      @endif 
-    
-  
-  
-
-</div>
-  
+  @if(!empty($cartItem))   
+    <div class="d-block">
+      <h3 class="">Total sum: {{ App\Models\Cart::where("user_id", Auth::user()->id)->sum('sum') }}</h3>
+      <a class="btn btn-success" href="{{ route('addToOrder')}}">Make order</a>
+    </div>        
+  @endif 
+</div>  
 @endsection
 

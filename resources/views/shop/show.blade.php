@@ -11,7 +11,10 @@
           <h4>$ {{ $item->price }}</h4>
           <h5>The count of items - {{ $item->total_count }}</h5>
           <p class="card-text">{{ $item->description }}</p>
-          <p><a class="btn btn-primary btn-lg" href="{{ route('homePage') }}" role="button">Back</a></p>
+          <div class="btn-toolbar justify-content-between" >            
+            <a class="align-bottom btn btn-lg btn-success" href="{{ route('addToCart', $item->id) }} ">Add to cart</a>
+            <a class="btn btn-primary btn-lg" href="{{ route('homePage') }}" role="button">Back</a>
+          </div>
         </div>
     </div>
     </div>

@@ -42,7 +42,10 @@
         </div>              
       </div>        
     @empty
-      No orders
+      <div class="mx-auto">
+        <h2>Your do not have any orders now</h2>
+      </div>
+      
     @endforelse 
   </div>
 </div>

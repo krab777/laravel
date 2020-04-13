@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemsTable extends Migration
+class CreateBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->id();
+        Schema::create('books', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->text('description');
-            $table->decimal('price', 10, 2);
-            $table->integer('total_count')->default(1);
-            $table->string('image')->default('http://placehold.it/700x400')->nullable();
+            $table->string('author');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('books');
     }
 }

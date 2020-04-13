@@ -20,7 +20,6 @@
 
   	@yield('content')
 
-   	@include('layouts.blocks.footer.index')  	
 
 	<script src="{{ asset('/js/app.js') }}"></script>
   	

@@ -20,11 +20,10 @@
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('dashboard.orders*') ? 'active' : '' }}" href="{{ route('dashboard.orders') }}">Orders</a>
                     </li>
-                @elseif((Auth::user()->role_id ?? '') === 3)
+                @elseif((Auth::user()->role_id ?? '') === 2)
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('dashboard.items*') ? 'active' : '' }}" href="{{ route('dashboard.items.index') }}">Items</a>
+                        <a class="nav-link {{ Route::is('dashboard.watchItems*') ? 'active' : '' }}" href="{{ route('dashboard.watchItems') }}">Items</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('dashboard.orders*') ? 'active' : '' }}" href="{{ route('dashboard.orders') }}">Orders</a>
                     </li>

@@ -16,11 +16,13 @@ class ItemController extends Controller
         $items = (new Item())->getItems();
 
         return view('shop.index', compact('items'));
+        // return view('dashboard.items.index', compact('items'));
+
     }
 
     public function getAll()
     {
-        $items = (new Item())->getItems();
+        $items = Item::latest()->paginate(10);
         // dd($items);
         // dd($items->image);
 
@@ -36,7 +38,7 @@ class ItemController extends Controller
         return view('shop.show', compact('item'));
     }
 
-    public function getOneItem ($id)
+    public function getOneItem($id)
     {
         $item = (new Item())->getOneItem($id);
         // dd($item->image);
@@ -57,7 +59,6 @@ class ItemController extends Controller
      */
     public function store(CreateRequest $request, Item $item)
     {
-
         $item = Item::create($request->all());
 
         $item->save();

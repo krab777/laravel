@@ -15,15 +15,15 @@ class StatusesTableSeeder extends Seeder
     {
         DB::table('statuses')->insert([
             // 'id' => 1,
-        	'name' => 'in progress',
+        	'name' => 'In progress',
         	'created_at' => date('Y-m-d H:i:s')
         ]);
         DB::table('statuses')->insert([
-        	'name' => 'done',
+        	'name' => 'Done',
         	'created_at' => date('Y-m-d H:i:s')
         ]);
         DB::table('statuses')->insert([
-            'name' => 'canceled',
+            'name' => 'Canceled',
             'created_at' => date('Y-m-d H:i:s')
         ]);
     }
