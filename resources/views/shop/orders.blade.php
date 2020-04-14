@@ -21,7 +21,7 @@
             
             @foreach($items->items as $item) 
               <h4 class="card-text"> 
-                Item name: {{ $item->name }} | Item id: {{ $item->id }} 
+                <a href="item/{{ $item->id }}">Item name: {{ $item->name }} | Item id: {{ $item->id }}</a> 
               </h4>   
             @endforeach
 
@@ -35,7 +35,8 @@
 
             <h5 class="card-text"> 
               Sum of items: {{ $items->sum }}
-            </h5>
+            </h5>                            
+
             <hr>
           @endforeach
           </div>

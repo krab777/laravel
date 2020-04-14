@@ -22,7 +22,7 @@
       <p>Created at: <b>{{ $user->created_at }}</b></p>
       <p>Password: <b>{{ $user->password }}</b></p>
 
-      <p><a class="btn btn-primary btn-lg" href="/blog/public/dashboard/users/" role="button">Back</a></p>
+      <p><a class="btn btn-primary btn-lg" href="{{ route('dashboard.users.index') }}" role="button">Back</a></p>
     </div>
   </div>
 </div>

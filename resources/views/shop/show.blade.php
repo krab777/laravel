@@ -13,9 +13,8 @@
         </div>
       </div>
     </div>
-  </section><!-- End Intro Single -->
-
-  <!-- ======= Agent Single ======= -->
+  </section>
+  
   <section class="agent-single">
     <div class="container">
       <div class="row">

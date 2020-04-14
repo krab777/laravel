@@ -21,7 +21,7 @@
             <h4>$ {{ $item->price }}</h4>
             <h5>The count of items - {{ $item->total_count }}</h5>
             <p class="card-text">{{ $item->description }}</p>
-            <p><a class="btn btn-primary btn-lg" href="{{ route('homePage') }}" role="button">Back</a></p>
+            <p><a class="btn btn-primary btn-lg" href="{{ route('dashboard.watchItems') }}" role="button">Back</a></p>
           </div>
         </div>
       </div>

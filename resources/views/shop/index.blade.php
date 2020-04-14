@@ -3,6 +3,13 @@
 @section('content')
     <section class="news-grid grid">
       <div class="container">
+        <div>
+          @if(session()->get('success'))
+            <div class="alert alert-success">
+              {{ session()->get('success') }}  
+            </div>
+          @endif
+        </div>
         <div class="row">
           @forelse($items as $item)  
           <div class="col-md-4">
@@ -13,12 +20,12 @@
               <div class="card-overlay">
                 <div class="card-header-b">
                   <div class="card-category-b">
-                    <a href="{{ route('item', $item->id) }}" class="category-b">{{ $item->name }}</a>
+                    <h2 class="title-2">
+                      <a href="{{ route('item', $item->id) }}">{{ $item->name }}</a>
+                    </h2>
                   </div>
                   <div class="card-title-b">
-                    <h2 class="title-2">
-                      <a href="{{ route('item', $item->id) }}">$ {{ $item->price }}</a>
-                    </h2>
+                    <a href="{{ route('item', $item->id) }}" class="category-b">$ {{ $item->price }}</a>
                   </div>
                 </div>
               </div>
@@ -31,9 +38,9 @@
         {{ $items->links() }}
 
       </div>
-    </section><!-- End Blog Grid-->
+    </section>
 
-  </main><!-- End #main -->
+  </main>
 
 <script
   src="https://code.jquery.com/jquery-2.2.4.js"
