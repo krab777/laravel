@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
 	        'role_id' => 3,	        
         ]);
 
-        factory(User::class, 10)->create();
+        factory(User::class, 20)->create();
    		
         // foreach (App\Models\Role::all() as $role) {
         //     factory(User::class, 10)->create([
