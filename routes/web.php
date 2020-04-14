@@ -15,12 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+
+
 Route::get('/files', 'Dashboard\Files\FileController@index')->name('files.index');
 
 Route::name('dashboard.')
     ->prefix('dashboard')
     ->group(function () {        
-
+        Route::get('{any}', function () {
+            return view('app');
+        })->where('any', '.*');
+        
         Route::view('/', 'dashboard.index')->middleware('role:admin|moderator');
         // Route::view('/', 'dashboard.index');
 
