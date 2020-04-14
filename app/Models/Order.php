@@ -34,9 +34,13 @@ class Order extends Model
 
         $orders->transform(function ($order, $key)
         {
-        	$order->cart = unserialize($order->cart);
+        	// $order->cart = unserialize($order->cart);
+            // $order->cart = json_decode($order->cart);
+            
+            // dd($order->cart);
         	return $order;
         });
+        // dd($orders);
 
         return $orders;
     }
@@ -47,7 +51,9 @@ class Order extends Model
 
         $orders->transform(function ($order, $key)
         {
-            $order->cart = unserialize($order->cart);
+            // $order->cart = unserialize($order->cart);
+            // $order->cart = json_decode($order->cart);
+
             return $order;
         });
 
@@ -60,7 +66,9 @@ class Order extends Model
 
         $userOrder->transform(function ($order, $key)
         {
-            $order->cart = unserialize($order->cart);
+            // $order->cart = unserialize($order->cart);
+            // $order->cart = json_decode($order->cart);
+
             return $order;
         }); 
 

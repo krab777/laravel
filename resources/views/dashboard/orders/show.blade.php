@@ -16,22 +16,23 @@
       <div class="col-10 my-3 mx-auto">             
         <div class="card h-100 ">
           <div class="card-body d-flex align-items-start flex-column mx-auto">
-          <!-- <p class="card-text">{{ ($order) }}</p> -->
-
+          <!-- <p class="card-text">{{ ($order->cart) }}</p> -->
+          
           <h2 class="card-text">Order id: {{ $order->id }}</h2> 
 
           <h2 class="card-text">Order sum: {{ $order->sum }}</h2>                 
 
           <h3 class="card-text">Order status: {{ $order->statuses->name }}</h3>
           <hr>
-
+          <?php 
+            $order->cart = json_decode($order->cart);
+          ?>
           @foreach($order->cart as $items) 
             
             @foreach($items->items as $item) 
               <h4 class="card-text"> 
-                Item name: {{ $item->name }} | Item id: {{ $item->id }} 
+                <a href="{{ route('item', $item->id) }}">Item name: {{ $item->name }} | Item id: {{ $item->id }}</a> 
               </h4>
-              <p class="card-text">Item description: {{ $item->description }}</p>   
             @endforeach
 
             <h5 class="card-text"> 

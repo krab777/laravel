@@ -17,11 +17,14 @@
           <h3 class="card-text">Order status: {{ $order->statuses->name }}</h3>
           <hr>
 
+          <?php 
+            $order->cart = json_decode($order->cart);
+          ?>
           @foreach($order->cart as $items) 
             
             @foreach($items->items as $item) 
               <h4 class="card-text"> 
-                <a href="item/{{ $item->id }}">Item name: {{ $item->name }} | Item id: {{ $item->id }}</a> 
+                <a href="{{ route('item', $item->id) }}">Item name: {{ $item->name }} | Item id: {{ $item->id }}</a> 
               </h4>   
             @endforeach
 

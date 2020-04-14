@@ -18,7 +18,7 @@ class OrderController extends Controller
         
         $order = Order::create([
             'user_id' => Auth::user()->id,
-            'cart' => $serializedCartItems,
+            'cart' => $cartItems,
             'sum' => Cart::where("user_id", Auth::user()->id)->sum('sum'),
         ]);
 
