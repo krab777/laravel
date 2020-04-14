@@ -32,11 +32,11 @@ class Order extends Model
     	
         $orders = Order::latest()->with('user')->where('user_id', $userId)->paginate(10);
 
-        // $orders->transform(function ($order, $key)
-        // {
-        // 	$order->cart = unserialize($order->cart);
-        // 	return $order;
-        // });
+        $orders->transform(function ($order, $key)
+        {
+        	$order->cart = unserialize($order->cart);
+        	return $order;
+        });
 
         return $orders;
     }
@@ -45,11 +45,11 @@ class Order extends Model
     {        
         $orders = Order::latest()->with('user')->paginate(10);
 
-        // $orders->transform(function ($order, $key)
-        // {
-        //     $order->cart = unserialize($order->cart);
-        //     return $order;
-        // });
+        $orders->transform(function ($order, $key)
+        {
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
 
         return $orders;
     }
