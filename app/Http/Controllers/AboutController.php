@@ -11,8 +11,6 @@ class AboutController extends Controller
 
    	public function index()
 	{
-		App::setlocale('ru');
-
 		return view('about');
 	}
 	

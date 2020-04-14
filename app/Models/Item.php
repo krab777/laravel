@@ -15,7 +15,7 @@ class Item extends Model
 	public function getItems()
     {
         // $items = DB::table('items')->orderBy('id', 'desc')->get();
-        $items = Item::latest()->paginate(6);
+        $items = Item::latest()->paginate(9);
 
         // dd($items);
         return $items;

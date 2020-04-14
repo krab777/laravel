@@ -1,11 +1,14 @@
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark top mb-3">
+<nav class="navbar navbar-default navbar-trans navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="{{ route('homePage')}}">@lang('shop.title')</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+      <a class="navbar-brand text-brand" href="{{ route('homePage')}}">Phone<span class="color-b">Shop</span></a>
+
+      <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+        <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="{{ route('homePage')}}">@lang('shop.home')</a>
           </li>
@@ -55,10 +58,6 @@
                       @endif
                       
                   </div>
-
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                     
-                  </div>
               </li>
           @endguest
         </ul>
@@ -66,6 +65,6 @@
     </div>
   </nav>
 
-
+ 
 
       
