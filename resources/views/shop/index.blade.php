@@ -3,16 +3,7 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-lg-3">
-      <h1 class="my-4">@lang('shop.shop_name')</h1>
-      <div class="list-group mb-4">
-        <a href="#" class="list-group-item">@lang('shop.category') 1</a>
-        <a href="#" class="list-group-item">@lang('shop.category') 2</a>
-        <a href="#" class="list-group-item">@lang('shop.category') 3</a>
-      </div>
-    </div>
-
-    <div class="col-lg-9 col-xl-9 mx-auto">
+    <div class="col-lg-9 col-xl-9 mx-auto mb-5">
       <div>            
         @if(session()->get('success'))
           <div class="alert alert-success">
@@ -48,6 +39,7 @@
             No products
           @endforelse 
       </div>
+      {{ $items->links() }}
     </div>
   </div>
 </div>

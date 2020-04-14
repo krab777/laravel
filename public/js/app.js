@@ -1923,6 +1923,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -1967,7 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
     addBook: function addBook() {
       var _this = this;
 
-      this.axios.post('http://localhost/blog/public/api/book/add', this.book).then(function (response) {
+      this.axios.post('http://localhost/api/book/add', this.book).then(function (response) {
         return _this.$router.push({
           name: 'home'
         }) // console.log(response.data)
@@ -2036,7 +2038,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://localhost/blog/public/api/books').then(function (response) {
+    this.axios.get('http://localhost/api/books').then(function (response) {
       _this.books = response.data;
     });
   },
@@ -2044,7 +2046,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteBook: function deleteBook(id) {
       var _this2 = this;
 
-      this.axios["delete"]("http://localhost/blog/public/api/book/delete/".concat(id)).then(function (response) {
+      this.axios["delete"]("http://localhost/api/book/delete/".concat(id)).then(function (response) {
         var i = _this2.books.map(function (item) {
           return item.id;
         }).indexOf(id); // find index of your object
@@ -2097,7 +2099,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get("http://localhost/blog/public/api/book/edit/".concat(this.$route.params.id)).then(function (response) {
+    this.axios.get("http://localhost/api/book/edit/".concat(this.$route.params.id)).then(function (response) {
       _this.book = response.data; // console.log(response.data);
     });
   },
@@ -2105,7 +2107,7 @@ __webpack_require__.r(__webpack_exports__);
     updateBook: function updateBook() {
       var _this2 = this;
 
-      this.axios.post("http://localhost/blog/public/api/book/update/".concat(this.$route.params.id), this.book).then(function (response) {
+      this.axios.post("http://localhost/api/book/update/".concat(this.$route.params.id), this.book).then(function (response) {
         _this2.$router.push({
           name: 'home'
         });
@@ -37547,20 +37549,14 @@ var render = function() {
               [
                 _c(
                   "router-link",
-                  {
-                    staticClass: "nav-item nav-link",
-                    attrs: { to: "/blog/public/dashboard/api" }
-                  },
-                  [_vm._v("Home")]
+                  { staticClass: "nav-item nav-link", attrs: { to: "/" } },
+                  [_vm._v("Home1111")]
                 ),
                 _vm._v(" "),
                 _c(
                   "router-link",
-                  {
-                    staticClass: "nav-item nav-link",
-                    attrs: { to: "/blog/public/dashboard/api/add" }
-                  },
-                  [_vm._v("Add Book")]
+                  { staticClass: "nav-item nav-link", attrs: { to: "/add" } },
+                  [_vm._v("ADDDD")]
                 )
               ],
               1
@@ -37570,6 +37566,8 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("br"),
+      _vm._v(" "),
+      _c("div", [_vm._v("THis is starter page")]),
       _vm._v(" "),
       _c("router-view")
     ],
@@ -53143,7 +53141,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_4__["routes"]
 });
 var app = new Vue({
-  el: '#app',
+  // el: '#app',
   router: router,
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
@@ -53491,15 +53489,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [{
   name: 'home',
-  path: '/blog/public/dashboard/api',
+  path: '/',
   component: _components_AllBooks_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   name: 'add',
-  path: '/blog/public/dashboard/api/add',
+  path: '/add',
   component: _components_AddBook_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   name: 'edit',
-  path: '/blog/public/dashboard/api/edit/:id',
+  path: '/edit/:id',
   component: _components_EditBook_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }];
 

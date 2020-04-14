@@ -28,7 +28,7 @@
         },
         created() {
             this.axios
-                .get(`http://localhost/blog/public/api/book/edit/${this.$route.params.id}`)
+                .get(`http://localhost/api/book/edit/${this.$route.params.id}`)
                 .then((response) => {
                     this.book = response.data;
                     // console.log(response.data);
@@ -37,7 +37,7 @@
         methods: {
             updateBook() {
                 this.axios
-                    .post(`http://localhost/blog/public/api/book/update/${this.$route.params.id}`, this.book)
+                    .post(`http://localhost/api/book/update/${this.$route.params.id}`, this.book)
                     .then((response) => {
                         this.$router.push({name: 'home'});
                     });

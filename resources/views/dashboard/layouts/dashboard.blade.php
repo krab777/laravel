@@ -22,9 +22,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        @include('dashboard.layouts.blocks.nav.index')
-
+    @include('dashboard.layouts.blocks.nav.index')
+    <div>
         <main class="py-4">
             @yield('content')
         </main>

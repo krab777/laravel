@@ -30,7 +30,7 @@
             addBook() {
 
                 this.axios
-                    .post('http://localhost/blog/public/api/book/add', this.book)
+                    .post('http://localhost/api/book/add', this.book)
                     .then(response => (
                         this.$router.push({name: 'home'})
                         // console.log(response.data)

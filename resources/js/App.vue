@@ -3,12 +3,14 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav">
-                    <router-link to="/blog/public/dashboard/api" class="nav-item nav-link">Home</router-link>
-                    <router-link to="/blog/public/dashboard/api/add" class="nav-item nav-link">Add Book</router-link>
+                    <router-link to="/" class="nav-item nav-link">Home1111</router-link>
+                    <router-link to="/add" class="nav-item nav-link">ADDDD</router-link>
+
                 </div>
             </div>
         </nav>
         <br/>
+        <div>THis is starter page</div>
         <router-view></router-view>
     </div>
 </template>

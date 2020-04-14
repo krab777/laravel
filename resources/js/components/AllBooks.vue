@@ -42,7 +42,7 @@
         },
         created() {
             this.axios
-                .get('http://localhost/blog/public/api/books')
+                .get('http://localhost/api/books')
                 .then(response => {
                     this.books = response.data;
                 });
@@ -50,7 +50,7 @@
         methods: {
             deleteBook(id) {
                 this.axios
-                    .delete(`http://localhost/blog/public/api/book/delete/${id}`)
+                    .delete(`http://localhost/api/book/delete/${id}`)
                     .then(response => {
                         let i = this.books.map(item => item.id).indexOf(id); // find index of your object
                         this.books.splice(i, 1)
@@ -58,4 +58,4 @@
             }
         }
     }
-</script>
+</script>s
